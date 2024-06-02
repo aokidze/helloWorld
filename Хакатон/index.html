@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналализатор полисомнографии</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/modalDownLoad.css">
+
+</head>
+<body>
+    <div>
+        <img src="./img/Minzdrav.png" alt="" style="position: relative; top: 10px;">
+        <button id="openModal" class="btn_downLoad">Загрузить полисомнографию пациента</button>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        
+        <form id="file-upload-form" class="uploader">
+          <input id="file-upload" type="file" name="fileUpload" accept=".ascii"  />
+          <span class="close" id="close">&times;</span>
+          <label for="file-upload" id="file-drag">
+            <img id="file-image" src="#" alt="Preview" class="hidden">
+            <div id="start">
+              <i class="fa fa-download" aria-hidden="true"></i>
+              <div>выберите файл или перетащите его сюда</div>
+              <div id="notimage" class="hidden">Пожалуйста, выберите файл</div>
+              <span id="file-upload-btn" class="btn btn-primary">выбрать файл</span>
+            </div>
+            <div id="response" class="hidden">
+              <div id="messages"></div>
+              <progress class="progress" id="file-progress" value="0">
+                <span>0</span>%
+              </progress>
+            </div>
+          </label>
+        </form>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 80vh;width: 1200px;position: absolute;">
+      <span id="loader" class="loader"></span>
+    </div>
+
+    <div id="table-res">
+        <table border="1">
+            <tr>
+              <th># эпизода НРД</th>
+              <th>Время начала регистрации эпизода НРД, с</th>
+              <th>Время завершения регистрации НРД, с</th>
+              <th>Время завершения регистрации НРД, с</th>
+              <th>Тип эпизода НРД*</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>173</td>
+              <td>179</td>
+              <td>4</td>
+              <td>гипопноэ</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>532</td>
+              <td>537</td>
+              <td>5</td>
+              <td>центральное апноэ</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>631</td>
+              <td>639</td>
+              <td>8</td>
+              <td>центральное апноэ</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>715</td>
+              <td>723</td>
+              <td>8</td>
+              <td>обструктивное апноэ</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>740</td>
+              <td>781</td>
+              <td>41</td>
+              <td>обструктивное апноэ</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>801</td>
+              <td>803</td>
+              <td>2</td>
+              <td>гипопноэ</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>1020</td>
+              <td>1023</td>
+              <td>3</td>
+              <td>апноэ</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>20100</td>
+              <td>20112</td>
+              <td>12</td>
+              <td>???</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>20113</td>
+              <td>20141</td>
+              <td>28</td>
+              <td>???</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>23121</td>
+              <td>23135</td>
+              <td>14</td>
+              <td>???</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>23301</td>
+              <td>23327</td>
+              <td>26</td>
+              <td>апноэ</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>23982</td>
+              <td>23997</td>
+              <td>15</td>
+              <td>обструктивное апноэ</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>24007</td>
+              <td>24012</td>
+              <td>5</td>
+              <td>обструктивное апноэ</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>25020</td>
+              <td>25020</td>
+              <td>8</td>
+              <td>апноэ</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>27983</td>
+              <td>27991</td>
+              <td>8</td>
+              <td>храп</td>
+            </tr>
+          </table>
+          
+    </div>
+    <div class="Block_download">
+        <a class="download" href="./file/Отчет для врача.docx">скачать</a>
+    </div>
+
+    <div>
+        <div id="report" class="report">
+            <h2 class="description_Otchet">Отчет по полисомнографической записи</h2>
+            <div class="tech_Otchet">
+                <h3 class="h-tech">Технический отчет</h3>
+                <p>Проведен анализ ПСГ длительностью 299.0 минут</p>
+                <p>Оценивались сигналы типа [O2-M1, M2-O1]</p>
+                <p>Время обработки составило 87 секунд</p>
+            </div>
+            <div class="clinical_Otchet">
+                <h3 class="h-tech">Клинический отчет</h3>
+                <p>По результатам анализа выявлено наличие признаков нарушений дыхания во сне</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="xar-res" style="position: relative; margin-top: 15em;">
+        <div>
+            <div class="Bl_gr1">
+                <div class="h-bl">Характеристика длительности эпизодов нарушения дыхания</div>
+                <img class="graphics_1" src="./img/graphics_1.png" alt="">
+                <p class="p_graphics_1">
+                <br><strong>Средняя длительность</strong> – <strong>12 секунд </strong>
+                <br><strong>Медиана длительности НРД</strong> – <strong>10 секунд</strong> </br>
+                    <strong> Разброс длительности НРД</strong> – от <strong>5 секунд</strong> до <strong>15 секунд</strong>
+                </p>
+            </div>
+            <div class="Bl_gr2">
+                <div class="h-bl">Анализ эпизодов нарушения дыхания в зависимости от времени регистрации</div>
+                <img class="graphics_2" src="./img/graphics_2.png" alt="">
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
